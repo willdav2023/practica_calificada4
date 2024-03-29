@@ -1,0 +1,40 @@
+<h1>Datos del Alumno!</h1>
+
+<div [hidden]="enviado"> 
+  <form (ngSubmit)="onSubmit()" #mascotaForm="ngForm">
+    <div class="form.group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" required
+          [(ngModel)]="modelo.id" name="id">
+      <br>
+      <label for="nombre">Nombre</label> 
+      <input type="text" class="form-control" id="nombre" required
+          [(ngModel)]="modelo.nombre" name="nombre">
+      <br>
+      <br>
+      <label for="apellido">Apellido</label> 
+      <input type="text" class="form-control" id="apellido" required
+          [(ngModel)]="modelo.apellido" name="apellido">
+      <br>
+      <label for="promedios">Promedio</label>
+      <select class="form-control" id="promedios" required
+          [(ngModel)]="modelo.promedios" name="promedios">
+          <option *ngFor="let promedio of promedios" [value]="promedio">
+              {{promedio}}
+          </option>
+      </select>
+  </div>
+
+
+    <button type="submit" class="btn btn-primary" 
+        [disabled]="!mascotaForm.form.valid">Enviar</button>
+  </form>
+</div>
+
+<div [hidden]="!enviado">
+  <h2>Formulario enviado</h2>
+  <div>Id: {{modelo.id}}</div>
+  <div>Nombre: {{modelo.nombre}}</div>
+  <div>Creditos: {{modelo.creditos}}</div>
+  <button class="btn btn-primary" (click)="enviado=false">Editar</button>
+</div>
